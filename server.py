@@ -46,6 +46,6 @@ def modulus(a:int, b:int) -> int:
     if b == 0:
         raise ValueError("Cannot perform modulus by zero.")
     return a % b
-'''
+
 if __name__ == "__main__":
-    mcp.run()'''
+    mcp.run('stdio')
