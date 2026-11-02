@@ -47,5 +47,20 @@ def modulus(a:int, b:int) -> int:
         raise ValueError("Cannot perform modulus by zero.")
     return a % b
 
+
+@mcp.resource("calc://constants")
+def constants() -> str:
+    """
+    Returns a string representation of some mathematical constants.
+    """
+    return (
+        "pi = 3.14\n"
+        "e = 2.718\n"
+        "1 inch = 2.54cm\n"
+    )
+@mcp.resource("calc://table/{number}")
+def table(number:int)->str:
+    return "\n".join(f"{number} x {i} = {number*i}" for i in range(1,11))
+
 if __name__ == "__main__":
     mcp.run('stdio')
