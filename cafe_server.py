@@ -65,7 +65,12 @@ def place_order(order_lines:list[OrderLine],coupon_code:str|None=None)->OrderCon
     ORDERS[order_id] = confirmation.dict()
     return confirmation 
 
-
+@mcp.prompt(title= "Daily Sales Summary")
+def daily_summary() -> str:
+    if not ORDERS:
+        return "No orders placed today."
+    total = sum(ORDERS[order_id].total_rupees for order_id in ORDERS)
+    return f"Sales so far today are {total}"
 
 @mcp.tool()
 def apply_coupon(order_id:str,code:str)-> OrderConfirmation:
