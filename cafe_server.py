@@ -46,9 +46,26 @@ class OrderStatus(BaseModel):
     status : str
     minutes_left:int
 
+def get_unique_order_id():
+    count =len(ORDERS)+1
+    return f"ORD{count:04d}"
+
 @mcp.tool()
 def place_order(order_lines:list[OrderLine],coupon_code:str|None=None)->OrderConfirmation:
-    pass
+    
+    #call existing code to place order and return data
+    order_id = get_unique_order_id()
+    total_rupees = 100 
+    eta = "30 minutes"
+    message = "Order placed successfully."
+    confirmation = OrderConfirmation(order_id=order_id,
+                                     total_rupees = total_rupees,
+                                     eta = eta,
+                                     message = message)
+    ORDERS[order_id] = confirmation.dict()
+    return confirmation 
+
+
 
 @mcp.tool()
 def apply_coupon(order_id:str,code:str)-> OrderConfirmation:

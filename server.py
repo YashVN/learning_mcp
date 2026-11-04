@@ -1,5 +1,6 @@
 from mcp.server import MCPServer
 
+
 #MCP Server 
 mcp = MCPServer("hello-mcp")
 
