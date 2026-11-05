@@ -28,7 +28,7 @@ def cafe_policies()->str:
 
 @mcp.resource("cafe://order/{order_id}")
 
-def Order_reciept(order_id:str)->str:
+def order_reciept(order_id:str)->str:
     pass 
 
 class OrderLine(BaseModel):

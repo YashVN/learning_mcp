@@ -2,7 +2,8 @@ from mcp.server import MCPServer
 
 
 #MCP Server 
-mcp = MCPServer("hello-mcp")
+mcp = MCPServer("Calculator",
+                instructions = "Simple Calculator")
 
 @mcp.tool()
 def add(a:int, b:int) -> int:
@@ -62,6 +63,8 @@ def constants() -> str:
 @mcp.resource("calc://table/{number}")
 def table(number:int)->str:
     return "\n".join(f"{number} x {i} = {number*i}" for i in range(1,11))
+
+app = mcp.streamable_http_app()
 
 if __name__ == "__main__":
     mcp.run('stdio')
